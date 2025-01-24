@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+    :root {
+      --main-bg-color: #f0f0f0;
+      --main-text-color: #333;
+      --main-blue-color: #016ecd;
+      --main-light-blue-color: #4aafcd;
+      --main-green-color: #5ab75c;
+      --main-yellow-color: #faa632;
+      --main-red-color:#da4f4a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+      color: var(--main-text-color);
+    }
+    body {
+      background-color: var(--main-bg-color);
+      display: flex;
+      flex-direction: column;
+    }
+    .app {
+      background-color: #fff;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+      width: 100%;
+      max-width: 500px;
+      margin: 50px auto;
+      border-radius: 10px;
+      padding: 30px;
+    }
+    .input-div{
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+    }
+    .input-div div{
+      display: flex;
+      flex-direction: column;
+      row-gap:5px;
+    }
+    .input-div div label{
+      font-size:14px;
+    }
+    .input-div div .text-box{
+      border: 1px solid lightgray;
+      outline: none;
+      padding:10px;
+      border-radius:4px;
+      font-size:14px;
+    }
+    .input-div div .text-box:focus{
+        border: 1px solid var(--main-blue-color);
+        transition: 0.3s ease-out;
+    }
+    .submit-btn, .redo-btn{
+      cursor: pointer;
+      padding:7px;
+      border:1px solid lightgray;
+      color:#333;
+      border-radius:4px;
+    }
+    .submit-btn:hover{
+      background-color: #eee;
+      transition: 0.3s ease-out;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .p-title{
+      font-weight:bold;
+    }
+    .logout-url{
+        width:auto;
+    }
+    .logout-url:hover{
+      color:var(--main-red-color);
+      transition: 0.3s ease-out;
+    }
+
+  </style>
+</head>
+<body>
+
+    <div class="app">
+        <div class="input-div">
+            <h2>Phishing Detection Form</h2>
+            <form action="/" method="POST">
+              <div>
+                <label for="subject">Email Subject:</label>
+                <input class="text-box text-box-subject" type="text" id="subject" name="subject" required>
+              </div>
+              <div>
+                <label for="body">Email Body:</label>
+                <textarea class="text-box text-box-body" id="body" rows="7" name="body" required></textarea>
+              </div>
+              <input class="submit-btn" type="submit" value="Check for Phishing">
+            </form>
+            <p>{{ subject }}</p>
+            <p>{{ body }}</p>
+            <p class="p-title">{{ result }}</p>
+            <a class="logout-url" href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
